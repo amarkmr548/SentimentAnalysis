@@ -3,10 +3,16 @@
   <display-name>SentimentAnalysis</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>SentimentAnalysis</display-name>
+    <servlet-name>AnalysisController</servlet-name>
+    <servlet-class>com.java.AnalysisController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnalysisController</servlet-name>
+    <url-pattern>/AnalysisController</url-pattern>
+  </servlet-mapping>
 </web-app>
