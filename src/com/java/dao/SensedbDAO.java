@@ -2,30 +2,47 @@ package com.java.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 
+import com.java.bo.PatternBO;
 import com.java.iface.SensedbIface;
 
 public class SensedbDAO implements SensedbIface{
+	private Connection connection;
 	
-	private static Connection createConnection(){
-		Connection c;
+	
+	public Connection getConnection() {
+		if(connection == null){
+			createConnection();
+		}
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+
+	private void createConnection(){
+		Connection c = null;
 		try {
 		     Class.forName("org.hsqldb.jdbc.JDBCDriver" );
-		     c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
+		     c = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost", "SA", "");
 		     
 		 } catch (Exception e) {
 		     System.err.println("ERROR: failed to load HSQLDB JDBC driver.");
 		     e.printStackTrace();
-		     return null;
 		 }
 
-		 return c;
+		 this.setConnection(c);
 	}
 
 	@Override
-	public void insertData() {
+	public void insertData(String feedback,String result) {
 		// TODO Auto-generated method stub
+		String query = "INSERT INTO \"PUBLIC\".\"SENTIMENT_ANALYSIS\" ( \"ID\",\"FEEDBACK\", \"RESULT\" ) VALUES ()";
+		
 		
 	}
 
@@ -34,9 +51,29 @@ public class SensedbDAO implements SensedbIface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public int getnextCount(){
+		int count = 0;
+		try{
+		
+		String query = "select max(ID)as ID from \"PUBLIC\".\"SENTIMENT_ANALYSIS\"";
+		Connection conn = getConnection();
+		Statement stmnt = conn.createStatement();
+		ResultSet rs = stmnt.executeQuery(query);
+		if(rs.next()){
+		count = rs.getInt("ID");
+		count++;
+		}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 	@Override
 	public HashMap<String, String> fetchDictionary() {
+		
 		// TODO Auto-generated method stub
 		return null;
 	}

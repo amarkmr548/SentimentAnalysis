@@ -7,6 +7,12 @@
 <title>Train the app</title>
 </head>
 <body>
-	
+	<form action="">
+		<select>
+  			<option value="POSITIVE">positive</option>
+  			<option value="NEGATIVE">negative</option>
+  			<option value="NEUTRAL">neutral</option>
+		</select>
+	</form>
 </body>
 </html>
