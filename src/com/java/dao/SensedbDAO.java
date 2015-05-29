@@ -48,8 +48,26 @@ public class SensedbDAO implements SensedbIface{
 
 	@Override
 	public HashMap<String, String> fetchFeedback() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "select FEEDBACK,RESULT FROM \"PUBLIC\".\"SENTIMENT_ANALYSIS\"";
+		
+		HashMap<String, String> feedbackresults = new HashMap<String, String>();
+		try{
+		Connection conn = getConnection();
+		Statement stmnt = conn.createStatement();
+		ResultSet rs = stmnt.executeQuery(query);
+		
+		while(rs.next()){
+			String key = rs.getString("FEEDBACK");
+			String value = rs.getString("result");
+			feedbackresults.put(key, value);
+		}
+		
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return feedbackresults;
 	}
 	
 	public int getnextCount(){

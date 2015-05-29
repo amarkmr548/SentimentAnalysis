@@ -1,5 +1,7 @@
 package com.java.test;
 
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +17,8 @@ public class SentimentAnalysisTest extends TestCase {
 	@Test
 	public void testsensedbdao(){
 		SensedbDAO sensedbDAO = new SensedbDAO();
-		System.out.println(sensedbDAO.getnextCount());
+		HashMap<String, String> mm = sensedbDAO.fetchFeedback();
+		System.out.println(mm.size());
 	}
 	
 }

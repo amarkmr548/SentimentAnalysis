@@ -7,7 +7,7 @@
 <title>File Upload</title>
 </head>
 <body>
-<form method="post" action="UploadServlet" enctype="multipart/form-data">
+<form method="post" action="AnalysisController" enctype="multipart/form-data">
 Select file to upload:
 <input type="file" name="dataFile" id="fileChooser"/><br/><br/>
 <input type="submit" value="Upload" />
